@@ -5,4 +5,5 @@ from .models import Client
 
 class ClientCreateView(CreateView):
     model = Client
-    
+    template_name = "registration/client_form.html"
+
