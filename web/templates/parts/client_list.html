@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<h2 class="text-center">Liste des clients</h2>
+
+<div class="container">
+    <div class="array border">
+
+        <div class="row no-gutters">
+            <div class="col-4 border text-center py-2">
+                Client
+            </div>
+            <div class="col-4 border text-center py-2">
+                Siret
+            </div>
+            <div class="col-4 border text-center py-2">
+                Numéro de TVA
+            </div>
+        </div>
+
+        {% for client in object_list %}
+        
+            <div class="row no-gutters">
+                <div class="col-4 border text-center py-2">
+                    <a href="{% url 'client_detail' client.id %}">
+                        {{client.first_name}} {{client.last_name}}
+                    </a>
+                </div>
+                <div class="col-4 border text-center py-2">
+                    <a href="{% url 'client_detail' client.id %}">
+                        {{client.siret}}
+                    </a>
+                </div>
+                <div class="col-4 border text-center py-2">
+                    <a href="{% url 'client_detail' client.id %}">
+                        {{client.tva_num}}
+                    </a>
+                </div>
+            </div>
+        
+        {% endfor %}
+    </div>
+</div>
+
+ 
+{%endblock%}

@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div class="container py-2">
+
+    <h2 class="text-center">Fiche client</h2>
+
+    <div class="array w-50 m-auto text-center border">
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Nom</div>
+            <div class="col-6 border">{{client.last_name}}</div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Prénom</div>
+            <div class="col-6 border">{{client.first_name}}</div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Téléphone</div>
+            <div class="col-6 border">{{client.phone}}</div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Raison sociale</div>
+            <div class="col-6 border">{{client.social_reason}}</div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Siret</div>
+            <div class="col-6 border">{{client.siret}}</div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Numéro TVA</div>
+            <div class="col-6 border">{{client.tva_num}}</div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Adress email</div>
+            <div class="col-6 border">{{client.email}}</div>
+        </div>
+    </div>
+</div>
+ 
+{%endblock%}
