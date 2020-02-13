@@ -8,40 +8,80 @@
     <div class="array border">
 
         <div class="row no-gutters">
-            <div class="col-4 border text-center py-2">
+            <div class="col-3 border text-center py-2">
                 Client
             </div>
-            <div class="col-4 border text-center py-2">
+            <div class="col-3 border text-center py-2">
                 Siret
             </div>
-            <div class="col-4 border text-center py-2">
+            <div class="col-3 border text-center py-2">
                 Numéro de TVA
+            </div>
+            <div class="col-3 border text-center py-2">
+                X
             </div>
         </div>
 
         {% for client in object_list %}
-        
-            <div class="row no-gutters">
-                <div class="col-4 border text-center py-2">
-                    <a href="{% url 'client_detail' client.id %}">
-                        {{client.first_name}} {{client.last_name}}
-                    </a>
-                </div>
-                <div class="col-4 border text-center py-2">
-                    <a href="{% url 'client_detail' client.id %}">
-                        {{client.siret}}
-                    </a>
-                </div>
-                <div class="col-4 border text-center py-2">
-                    <a href="{% url 'client_detail' client.id %}">
-                        {{client.tva_num}}
-                    </a>
+
+        <div class="row no-gutters">
+            <div class="col-3 border text-center py-2">
+                <a href="{% url 'client_detail' client.id %}">
+                    {{client.first_name}} {{client.last_name}}
+                </a>
+            </div>
+            <div class="col-3 border text-center py-2">
+                <a href="{% url 'client_detail' client.id %}">
+                    {{client.siret}}
+                </a>
+            </div>
+            <div class="col-3 border text-center py-2">
+                <a href="{% url 'client_detail' client.id %}">
+                    {{client.tva_num}}
+                </a>
+            </div>
+            <div class="col-3 border text-center py-2">
+                <div class="text-center">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger client-delete" id="{{ client.id }}" data-toggle="modal" data-target="#exampleModal">
+                        Supprimer
+                    </button>
+                    
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Êtes-vous sûr de vouloir supprimer ce client ?
+                                </div>
+                                <div class="modal-footer">
+                                    <form method="post" action="{% url 'client_delete' client.id %}">{% csrf_token %}
+                                        <input type="submit" value="Confirm" class="btn btn-danger">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
         
         {% endfor %}
+        <!-- Modal -->
     </div>
 </div>
 
- 
+<script>
+
+
+
+</script>
+
+
 {%endblock%}

@@ -8,3 +8,6 @@ class Client(models.Model):
     siret = models.CharField(max_length = 100)
     tva_num = models.IntegerField()
     email = models.EmailField(max_length = 254)
+
+class Adress(models.Model):
+    client = models.ForeignKey(Client)
