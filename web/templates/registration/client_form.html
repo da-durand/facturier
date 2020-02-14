@@ -7,15 +7,25 @@
     <h2 class="text-center">Nouveau client</h2>
 
     <div class="w-50 m-auto">
-        <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <form id="new_client" action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
         
-            {{ client_form.management_form }}
             {{form.as_p}}
+            
+            <hr>
+            
+            {% for form in client_form.forms %}
+                <div class="new_adress">
+                    {{ form.id }}
+                    {{form.as_p}}
+                    <hr>
+                </div>
+            {% endfor %}
 
-            {{client_form.forms.0}}
-        
+
+            {{ client_form.management_form }}
+            
             <input type="submit" value="save">
-        
+            
         </form>
     </div>
      
