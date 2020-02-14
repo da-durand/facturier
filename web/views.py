@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Client
+from .forms import ClientFormSet
 
 
 class ClientCreateView(CreateView):
@@ -9,6 +10,12 @@ class ClientCreateView(CreateView):
     template_name = "registration/client_form.html"
     fields = "__all__"
     success_url= reverse_lazy('client_list')
+
+    def get_context_data(self, **kwargs):
+        context = CreateView.get_context_data(self, **kwargs)
+        context["client_form"] = ClientFormSet()
+        context['tags'] = Tags.objects.all()
+        return context
 
 class ClientListView(ListView):
     model = Client
