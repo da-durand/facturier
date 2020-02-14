@@ -10,4 +10,9 @@ class Client(models.Model):
     email = models.EmailField(max_length = 254)
 
 class Adress(models.Model):
-    client = models.ForeignKey(Client)
+
+    def __str__(self):
+        return self.client.siret
+
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='adress')
+    test = models.CharField(max_length=100, null=True)
