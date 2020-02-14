@@ -35,6 +35,15 @@
             <div class="col-6 text-success border">Adress email</div>
             <div class="col-6 border">{{client.email}}</div>
         </div>
+        <div class="row no-gutters">
+            <div class="col-6 text-success border">Adress</div>
+            <div class="col-6 border">
+                {% for adress in client.adress.all %}
+               <p>{{adress.adress}} {{adress.postal_code}} {{adress.city}}</p>
+                {% endfor %}
+
+            </div>
+        </div>
     </div>
     <div class="text-center">
         <a href="{% url 'client_update' client.id %}" class="btn btn-primary">Editer</a>

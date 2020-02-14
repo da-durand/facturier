@@ -6,8 +6,9 @@ from .models import Client, Adress
 class ClientInline(admin.StackedInline):
     model = Adress
     can_delete = False
+    extra = 1
 
-class ClientAdmin():
-    inlines = (ClientInline,)
+class ClientAdmin(admin.ModelAdmin):
+    inlines = [ClientInline]
 
 admin.site.register(Client, ClientAdmin)

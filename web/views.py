@@ -18,6 +18,8 @@ class ClientListView(ListView):
 class ClientDetailView(DetailView):
     model = Client
     template_name = "parts/client_detail.html"
+    slug_field = "adress"
+    slug_url_kwarg = "adress"
 
 class ClientUpdateView(UpdateView):
     model = Client
