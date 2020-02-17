@@ -15,7 +15,6 @@
             
             {% for form in client_form.forms %}
                 <div class="new_adress">
-                    {{ form.id }}
                     {{form.as_p}}
                     <hr>
                 </div>
@@ -30,4 +29,12 @@
     </div>
      
 </div>
+
+<!-- <script>
+
+    $(function(){
+        $(".new_adress").formset()
+    });
+
+</script> -->
 {%endblock%}

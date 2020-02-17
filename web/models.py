@@ -14,3 +14,17 @@ class Adress(models.Model):
     adress = models.CharField(max_length=100, null=True)
     postal_code = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=100, null=True)
+
+class Devis(models.Model):
+    number = models.IntergerField()
+    date = models.DateField()
+    client = models.ForeignKey(Client, related_name="devis")
+
+class LigneDevis(models.Model):
+    devis = ForeignKey(Devis, on_delete=models.CASCADE, related_name="ligne_devis")
+    product = models.CharField(max_length=100)
+    quantity = models.IntergerField()
+    unit_price = models.IntergerField()
+    total_unit_price = models.IntergerField()
+    total = models.IntergerField()
+    

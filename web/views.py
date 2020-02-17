@@ -18,11 +18,15 @@ class ClientCreateView(CreateView):
 
 
     def form_valid(self, form):
+
         self.client = form.save(commit = False)
         adress_form = AdressFormSet(self.request.POST, instance = self.client)
-        form.save()
-        adress_form.save()
+
+        for adress_form_set in adress_form:
+            form.save()
+            adress_form.save()
         return HttpResponseRedirect(self.get_success_url())
+
     
     def get_success_url(self):
         return reverse_lazy('client_list') 
