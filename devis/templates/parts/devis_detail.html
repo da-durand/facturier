@@ -14,7 +14,7 @@
     <div class="client d-flex justify-content-end">
         <div class="client-container w-25">
             <p>{{ devis.client.first_name }} {{ devis.client.last_name }}</p>
-            <p> adresse : A faire !!!!!</p>
+            <p> adresse : {{devis.client.adress.all.0.adress}} {{devis.client.adress.all.0.postal_code}} {{devis.client.adress.all.0.city}}</p>
             <p> Tel : {{ devis.client.phone }}</p>
             <p> Siret : {{ devis.client.siret }}</p>
             <p> TVA : {{ devis.client.tva_num }}</p>
@@ -93,6 +93,37 @@
         </div>
     </div>
 
+    <a href="{% url 'devis_update' devis.id %}" class="btn">Editer</a>
+
+    <div class="text-center">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+            Supprimer
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Supprimer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Êtes-vous sûr de vouloir supprimer ce devis ?
+                    </div>
+                    <div class="modal-footer">
+                        <form method="post" action="{% url 'devis_delete' devis.id %}">{% csrf_token %}
+                          <input type="submit" value="Confirm" class="btn btn-danger">
+                      </form>
+                      </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 

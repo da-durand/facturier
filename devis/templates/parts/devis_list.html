@@ -54,7 +54,7 @@
                                     Êtes-vous sûr de vouloir supprimer ce devis ?
                                 </div>
                                 <div class="modal-footer">
-                                    <form method="post" action="">{% csrf_token %}
+                                    <form method="post" action="{% url 'devis_delete' devis.id %}">{% csrf_token %}
                                         <input type="submit" value="Confirm" class="btn btn-danger">
                                     </form>
                                 </div>

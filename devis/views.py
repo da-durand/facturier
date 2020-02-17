@@ -16,7 +16,7 @@ class DevisDetailView(DetailView):
 
 class DevisCreateView(CreateView):
     model = Devis
-    template_name = "parts/create_devis.html"
+    template_name = "parts/form_devis.html"
     fields = "__all__"
 
     def get_context_data(self, **kwargs):
@@ -37,8 +37,27 @@ class DevisCreateView(CreateView):
 
 class DevisUpdateView(UpdateView):
     model = Devis
-    template_name = "parts/update_devis.html"
+    template_name = "parts/form_devis.html"
     fields = "__all__"
 
-    
+    def get_context_data(self, **kwargs):
+        context = UpdateView.get_context_data(self, **kwargs)
+        context["ligne_form"] = LigneFormSet(instance = self.get_object())
+        return context
 
+
+    def form_valid(self, form):
+        self.ligne = form.save(commit = False)
+        ligne_form = LigneFormSet(self.request.POST, instance = self.ligne)
+        form.save()
+        ligne_form.save()
+        return HttpResponseRedirect(self.get_success_url())
+    
+    def get_success_url(self):
+        return reverse_lazy('devis_list')
+
+    
+class DevisDeleteView(DeleteView):
+    model = Devis
+    success_url = reverse_lazy('devis_list')
+    
