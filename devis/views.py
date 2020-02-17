@@ -17,7 +17,7 @@ class DevisDetailView(DetailView):
 class DevisCreateView(CreateView):
     model = Devis
     template_name = "parts/form_devis.html"
-    fields = "__all__"
+    fields = ["client"]
 
     def get_context_data(self, **kwargs):
         context = CreateView.get_context_data(self, **kwargs)

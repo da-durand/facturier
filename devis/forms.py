@@ -7,3 +7,5 @@ LigneFormSet = inlineformset_factory(Devis, LigneDevis,
     extra= 1,
     fields = ["product", "quantity", "unit_price"],
 )
+
+

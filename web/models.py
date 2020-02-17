@@ -9,6 +9,9 @@ class Client(models.Model):
     tva_num = models.IntegerField()
     email = models.EmailField(max_length = 254)
 
+    def __str__ (self):
+        return self.first_name +" "+ self.last_name
+
 class Adress(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='adress')
     adress = models.CharField(max_length=100, null=True)

@@ -1,11 +1,12 @@
 from django.db import models
 from web.models import Client
+import datetime
 
 
 # Create your models here.
 
 class Devis(models.Model):
-    date = models.DateField()
+    date = models.DateField(default = datetime.date.today)
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="devis", null=True)
 
     def total_ht(self):
@@ -20,6 +21,7 @@ class Devis(models.Model):
 
     def total_ttc(self):
         return self.total_ht() + self.tva()
+
 
 class LigneDevis(models.Model):
     devis = models.ForeignKey(Devis, on_delete=models.CASCADE, related_name="ligne_devis")
