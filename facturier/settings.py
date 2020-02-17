@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'facturier',
     'web',
+    'devis',
     'bootstrap_modal_forms',
 ]
 

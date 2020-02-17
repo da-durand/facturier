@@ -11,4 +11,5 @@ class ClientInline(admin.StackedInline):
 class ClientAdmin(admin.ModelAdmin):
     inlines = [ClientInline]
 
+
 admin.site.register(Client, ClientAdmin)
