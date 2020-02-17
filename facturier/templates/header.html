@@ -2,10 +2,13 @@
     <h1 class="text-center">Facturations</h1>
     <nav class="row justify-content-around">
         <div>
-            <a href="{% url 'client_list' %}" class="text-dark">Liste</a>
+            <a href="{% url 'client_list' %}" class="text-dark">Liste Client</a>
         </div>
         <div>
-            <a href="{% url 'client_create' %}" class="text-dark">Ajouter</a>
+            <a href="{% url 'client_create' %}" class="text-dark">Ajouter Client</a>
+        </div>
+        <div>
+            <a href="{% url 'devis_list' %}" class="text-dark">Liste Devis</a>
         </div>
     </nav>
 </header>

@@ -4,22 +4,95 @@
 
 <div class="container py-2">
 
-    <p> Siret : {{ devis.client.siret }}</p>
-    <p> TVA : {{ devis.client.tva_num }}</p>
-    <p> adresse : A faire !!!!!</p>
-    <p> Phone : {{ devis.client.phone }}</p>
-    <p> First name : {{ devis.client.first_name }}</p>
-    <p> Last name : {{ devis.client.last_name }}</p>
-    <p> Date de creation : {{ devis.date }}</p>
-    <p> Siret : {{ devis.client.siret }}</p>
-    <p> Siret : {{ devis.client.siret }}</p>
-    <p> Siret : {{ devis.client.siret }}</p>
-    <p> Siret : {{ devis.client.siret }}</p>
-    <p> Siret : {{ devis.client.siret }}</p>
-    <p> Siret : {{ devis.client.siret }}</p>
-    <p> Siret : {{ devis.client.siret }}</p>
-    <p> Siret : {{ devis.client.siret }}</p>
-    <p> Siret : {{ devis.client.siret }}</p>
+    <h1 class="text-center">Devis</h1>
+
+    <div class="enterprise">
+        <p>Wayne Enterprise</p>
+        <p>Manoir des Wayne, Gotham</p>
+        <p>Tel : **CRYPTED**</p>
+    </div>
+    <div class="client d-flex justify-content-end">
+        <div class="client-container w-25">
+            <p>{{ devis.client.first_name }} {{ devis.client.last_name }}</p>
+            <p> adresse : A faire !!!!!</p>
+            <p> Tel : {{ devis.client.phone }}</p>
+            <p> Siret : {{ devis.client.siret }}</p>
+            <p> TVA : {{ devis.client.tva_num }}</p>
+        </div>
+    </div>
+
+    <div class="date mt-5 w-50 row border no-gutters text-center">
+        <div class="col-6 border py-2">Date du devis</div>
+        <div class="col-6 border py-2">{{ devis.date }}</div>
+    </div>
+
+    <div class="array border mt-5">
+
+        <div class="row no-gutters">
+            <div class="col-3 border text-center py-2">
+                Desciption
+            </div>
+            <div class="col-3 border text-center py-2">
+                Quantité
+            </div>
+            <div class="col-3 border text-center py-2">
+                Prix unitaire HT
+            </div>
+            <div class="col-3 border text-center py-2">
+                Prix total HT
+            </div>
+        </div>
+
+        {% for ligne_devis in devis.ligne_devis.all %}
+
+        <div class="row no-gutters">
+            <div class="col-3 border text-center py-2">
+                {{ ligne_devis.product }}
+            </div>
+            <div class="col-3 border text-center py-2">
+                {{ ligne_devis.quantity }}
+            </div>
+            <div class="col-3 border text-center py-2">
+                {{ ligne_devis.unit_price }}
+            </div>
+            <div class="col-3 border text-center py-2">
+                {{ ligne_devis.total_quantity_ht }}
+            </div>
+        </div>
+        
+        {% endfor %}
+        <!-- Modal -->
+    </div>
+
+    <div class="total d-flex justify-content-end mt-5">
+        <div class="total-container w-25">
+            <div class="row no-gutters">
+                <div class="col-6 border">
+                    Total HT
+                </div>
+                <div class="col-6 border">
+                    {{devis.total_ht}}
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-6 border">
+                    TVA (20,00%)
+                </div>
+                <div class="col-6 border">
+                    {{ devis.tva }}
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-6 border">
+                    Total TTC
+                </div>
+                <div class="col-6 border">
+                    {{ devis.total_ttc }}
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 

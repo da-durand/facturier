@@ -10,4 +10,3 @@ class DevisListView(ListView):
 class DevisDetailView(DetailView):
     model = Devis
     template_name = "parts/devis_detail.html"
-
