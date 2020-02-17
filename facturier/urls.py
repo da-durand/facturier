@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from web.views import ClientCreateView, ClientListView, ClientDetailView, ClientUpdateView, ClientDeleteView
+from devis.views import DevisListView, DevisDetailView
 from django.conf import settings
 
 urlpatterns = [
@@ -25,4 +26,6 @@ urlpatterns = [
     path("client/<int:pk>/", ClientDetailView.as_view(), name = 'client_detail'),
     path("client/<int:pk>/update", ClientUpdateView.as_view(), name = 'client_update'),
     path("client/<int:pk>/delete", ClientDeleteView.as_view(), name = 'client_delete'),
+    path("devis/", DevisListView.as_view(), name = 'devis_list'),
+    path("devis/<int:pk>/", DevisDetailView.as_view(), name = 'devis_detail'),
 ]
