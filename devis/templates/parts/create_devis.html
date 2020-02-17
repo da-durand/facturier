@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div class="container py-2">
+
+    <h2 class="text-center">Nouveau Devis</h2>
+
+    <div class="w-50 m-auto">
+        <form id="new_client" action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+            {{form.as_p}}
+
+            <hr>
+
+            {% for form in ligne_form.forms %}
+            <div class="new_adress">
+                {{form.as_p}}
+                <hr>
+            </div>
+            {% endfor %}
+
+
+
+            {{ ligne_form.management_form }}
+
+            <input type="submit" value="save">
+
+        </form>
+    </div>
+
+</div>
+
+<!-- <script>
+
+    $(function(){
+        $(".new_adress").formset()
+    });
+
+</script> -->
+{%endblock%}
