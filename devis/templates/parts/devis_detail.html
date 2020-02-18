@@ -14,7 +14,8 @@
     <div class="client d-flex justify-content-end">
         <div class="client-container w-25">
             <p>{{ devis.client.first_name }} {{ devis.client.last_name }}</p>
-            <p> adresse : {{devis.client.adress.all.0.adress}} {{devis.client.adress.all.0.postal_code}} {{devis.client.adress.all.0.city}}</p>
+            <p> adresse : {{devis.client.adress.all.0.adress}} {{devis.client.adress.all.0.postal_code}}
+                {{devis.client.adress.all.0.city}}</p>
             <p> Tel : {{ devis.client.phone }}</p>
             <p> Siret : {{ devis.client.siret }}</p>
             <p> TVA : {{ devis.client.tva_num }}</p>
@@ -59,7 +60,7 @@
                 {{ ligne_devis.total_quantity_ht }}
             </div>
         </div>
-        
+
         {% endfor %}
         <!-- Modal -->
     </div>
@@ -97,6 +98,8 @@
 
     <div class="text-center">
         <!-- Button trigger modal -->
+        <h5 class="modal-title" id="exampleModalLabel">Export pdf</h5>
+        <a type="button" class="btn btn-primary" href="{% url 'pdf' devis.id %}" >pdf</a>
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
             Supprimer
         </button>
@@ -116,14 +119,14 @@
                     </div>
                     <div class="modal-footer">
                         <form method="post" action="{% url 'devis_delete' devis.id %}">{% csrf_token %}
-                          <input type="submit" value="Confirm" class="btn btn-danger">
-                      </form>
-                      </div>
-                </div>
-            </div>
-        </div>
-
+            <input type="submit" value="Confirm" class="btn btn-danger">
+            </form>
     </div>
+</div>
+</div>
+</div>
+
+</div>
 </div>
 
 

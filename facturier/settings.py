@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'facturier',
     'web',
     'devis',
+    'facture',
     'bootstrap_modal_forms',
 ]
 
