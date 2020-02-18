@@ -19,6 +19,7 @@ from web.views import ClientCreateView, ClientListView, ClientDetailView, Client
 from devis.views import DevisListView, DevisDetailView, DevisCreateView, DevisUpdateView, DevisDeleteView
 from django.conf import settings
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", ClientCreateView.as_view(), name='client_create' ),
@@ -31,4 +32,4 @@ urlpatterns = [
     path("create_devis/", DevisCreateView.as_view(), name = 'devis_create'),
     path("devis/<int:pk>/update", DevisUpdateView.as_view(), name = 'devis_update'),
     path("devis/<int:pk>/delete", DevisDeleteView.as_view(), name = 'devis_delete'),
-]
+    ]

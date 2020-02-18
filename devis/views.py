@@ -1,9 +1,13 @@
 from django.shortcuts import render
+from django.conf import settings
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from .models import Devis
 from .forms import LigneFormSet
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+
+from django_weasyprint import WeasyTemplateResponseMixin
+from django_weasyprint.views import CONTENT_TYPE_PNG
 
 # Create your views here.
 class DevisListView(ListView):
@@ -13,6 +17,12 @@ class DevisListView(ListView):
 class DevisDetailView(DetailView):
     model = Devis
     template_name = "parts/devis_detail.html"
+
+class DevisPdf(WeasyTemplateResponseMixin, DevisDetailView):
+
+    pdf_attachment = False
+    pdf_filename = "devis.pdf"
+
 
 class DevisCreateView(CreateView):
     model = Devis

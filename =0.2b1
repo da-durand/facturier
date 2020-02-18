@@ -1,0 +1,7 @@
+Requirement already satisfied: xhtml2pdf in /home/master-shift/.virtualenvs/facturier/lib/python3.7/site-packages (0.2.4)
+Requirement already satisfied: pyPdf2 in /home/master-shift/.virtualenvs/facturier/lib/python3.7/site-packages (from xhtml2pdf) (1.26.0)
+Requirement already satisfied: reportlab>=3.0 in /home/master-shift/.virtualenvs/facturier/lib/python3.7/site-packages (from xhtml2pdf) (3.5.34)
+Requirement already satisfied: six in /home/master-shift/.virtualenvs/facturier/lib/python3.7/site-packages (from xhtml2pdf) (1.14.0)
+Requirement already satisfied: html5lib>=1.0 in /home/master-shift/.virtualenvs/facturier/lib/python3.7/site-packages (from xhtml2pdf) (1.0.1)
+Requirement already satisfied: Pillow in /home/master-shift/.virtualenvs/facturier/lib/python3.7/site-packages (from xhtml2pdf) (7.0.0)
+Requirement already satisfied: webencodings in /home/master-shift/.virtualenvs/facturier/lib/python3.7/site-packages (from html5lib>=1.0->xhtml2pdf) (0.5.1)

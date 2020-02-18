@@ -1,2 +1,5 @@
 Django
 django-bootstrap-modal-forms
+
+django-easy-pdf
+xhtml2pdf
