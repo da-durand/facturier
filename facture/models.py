@@ -3,6 +3,9 @@ from devis.models import Devis
 from web.models import Client
 import datetime
 
+from django.db.models.signals import post_save
+
+
 
 # Create your models here.
 
@@ -35,3 +38,13 @@ class LigneFacture(models.Model):
 
     def total_quantity_ht(self):
         return round(self.unit_price * self.quantity, 2)
+
+
+def save_facture(sender, instance, **kwargs):
+
+    if created:
+        # for obj in instance.devis.ligne_devis.all():
+
+        instance.save()
+
+post_save.connect(save_facture, sender=Facture)

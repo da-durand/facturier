@@ -2,7 +2,6 @@ from django.db import models
 from web.models import Client
 import datetime
 
-
 # Create your models here.
 
 class Devis(models.Model):
@@ -31,3 +30,5 @@ class LigneDevis(models.Model):
 
     def total_quantity_ht(self):
         return round(self.unit_price * self.quantity, 2)
+
+
