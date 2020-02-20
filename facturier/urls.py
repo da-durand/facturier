@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from web.views import ClientCreateView, ClientListView, ClientDetailView, ClientUpdateView, ClientDeleteView
 from devis.views import DevisListView, DevisDetailView, DevisCreateView, DevisUpdateView, DevisDeleteView, DevisPdf, FactureTransformView
 from facture.views import FactureListView, FactureDetailView, FacturePdf
@@ -38,4 +38,5 @@ urlpatterns = [
     path("facture/<int:pk>/", FactureDetailView.as_view(), name = 'facture_detail'),
     path("facture/<int:pk>/pdf", FacturePdf.as_view(), name = 'pdf_facture'),
     path("facture/<int:pk>/set", FactureTransformView.as_view(), name="facture_transform"),
+    path("accounts/", include('django.contrib.auth.urls'), name="login"),
     ]

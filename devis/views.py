@@ -77,11 +77,9 @@ class FactureTransformView(DetailView):
     model = Devis
     template_name = "parts/devis_detail.html"
 
-
-
-            #     Facture.objects.create(
-            #     product =  obj.product,
-            #     quantity = obj.quantity,
-            #     unit_price  = obj.unit_price,
-            #     facture = instance
-            # )
+    def get(self, request, *args, **kwargs):
+        fact = Facture.objects.create(
+            devis = self.get_object(),
+            client = self.get_object().client
+        )
+        return HttpResponseRedirect(reverse_lazy("facture_list"))
