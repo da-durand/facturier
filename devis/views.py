@@ -74,9 +74,14 @@ class DevisDeleteView(DeleteView):
 
 
 class FactureTransformView(DetailView):
-    model = Facture
-    pass
-    
+    model = Devis
+    template_name = "parts/devis_detail.html"
 
 
-    
+
+            #     Facture.objects.create(
+            #     product =  obj.product,
+            #     quantity = obj.quantity,
+            #     unit_price  = obj.unit_price,
+            #     facture = instance
+            # )

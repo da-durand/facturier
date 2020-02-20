@@ -24,7 +24,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("create_client", ClientCreateView.as_view(), name='client_create' ),
-    path("clients/", ClientListView.as_view(), name ='client_list'),
+    path("", ClientListView.as_view(), name ='client_list'),
     path("client/<int:pk>/", ClientDetailView.as_view(), name = 'client_detail'),
     path("client/<int:pk>/update", ClientUpdateView.as_view(), name = 'client_update'),
     path("client/<int:pk>/delete", ClientDeleteView.as_view(), name = 'client_delete'),
@@ -37,5 +37,5 @@ urlpatterns = [
     path("factures", FactureListView.as_view(), name = 'facture_list'),
     path("facture/<int:pk>/", FactureDetailView.as_view(), name = 'facture_detail'),
     path("facture/<int:pk>/pdf", FacturePdf.as_view(), name = 'pdf_facture'),
-    path("facture/<int:pk>/set", FactureTransformView, name="facture_transform"),
+    path("facture/<int:pk>/set", FactureTransformView.as_view(), name="facture_transform"),
     ]
