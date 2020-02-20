@@ -4,6 +4,7 @@ from web.models import Client
 import datetime
 
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 
@@ -39,12 +40,15 @@ class LigneFacture(models.Model):
     def total_quantity_ht(self):
         return round(self.unit_price * self.quantity, 2)
 
-
-def save_facture(sender, instance, **kwargs):
+@receiver(post_save, sender = Facture)
+def save_facture(sender, instance, created, **kwargs):
 
     if created:
-        # for obj in instance.devis.ligne_devis.all():
+        for obj in instance.devis.ligne_devis.all():
+            LigneFacture.objects.create(
+                product =  obj.product,
+                quantity = obj.quantity,
+                unit_price  = obj.unit_price,
+                facture = instance
+            )
 
-        instance.save()
-
-post_save.connect(save_facture, sender=Facture)

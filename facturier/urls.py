@@ -16,14 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from web.views import ClientCreateView, ClientListView, ClientDetailView, ClientUpdateView, ClientDeleteView
-from devis.views import DevisListView, DevisDetailView, DevisCreateView, DevisUpdateView, DevisDeleteView, DevisPdf
+from devis.views import DevisListView, DevisDetailView, DevisCreateView, DevisUpdateView, DevisDeleteView, DevisPdf, FactureTransformView
 from facture.views import FactureListView, FactureDetailView, FacturePdf
 from django.conf import settings
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", ClientCreateView.as_view(), name='client_create' ),
+    path("create_client", ClientCreateView.as_view(), name='client_create' ),
     path("clients/", ClientListView.as_view(), name ='client_list'),
     path("client/<int:pk>/", ClientDetailView.as_view(), name = 'client_detail'),
     path("client/<int:pk>/update", ClientUpdateView.as_view(), name = 'client_update'),
@@ -37,4 +37,5 @@ urlpatterns = [
     path("factures", FactureListView.as_view(), name = 'facture_list'),
     path("facture/<int:pk>/", FactureDetailView.as_view(), name = 'facture_detail'),
     path("facture/<int:pk>/pdf", FacturePdf.as_view(), name = 'pdf_facture'),
+    path("facture/<int:pk>/set", FactureTransformView, name="facture_transform"),
     ]

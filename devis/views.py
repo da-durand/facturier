@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from .models import Devis
+from facture.models import Facture
 from .forms import LigneFormSet
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -70,4 +71,12 @@ class DevisUpdateView(UpdateView):
 class DevisDeleteView(DeleteView):
     model = Devis
     success_url = reverse_lazy('devis_list')
+
+
+class FactureTransformView(DetailView):
+    model = Facture
+    pass
+    
+
+
     
