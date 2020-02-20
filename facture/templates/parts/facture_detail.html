@@ -1,0 +1,133 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div class="container py-2">
+
+    <h1 class="text-center">facture</h1>
+
+    <div class="enterprise">
+        <p>Wayne Enterprise</p>
+        <p>Manoir des Wayne, Gotham</p>
+        <p>Tel : **CRYPTED**</p>
+    </div>
+    <div class="client d-flex justify-content-end">
+        <div class="client-container w-25">
+            <p>{{ facture.client.first_name }} {{ facture.client.last_name }}</p>
+            <p> adresse : {{facture.client.adress.all.0.adress}} {{facture.client.adress.all.0.postal_code}}
+                {{facture.client.adress.all.0.city}}</p>
+            <p> Tel : {{ facture.client.phone }}</p>
+            <p> Siret : {{ facture.client.siret }}</p>
+            <p> TVA : {{ facture.client.tva_num }}</p>
+        </div>
+    </div>
+
+    <div class="date mt-5 w-50 row border no-gutters text-center">
+        <div class="col-6 border py-2">Date du facture</div>
+        <div class="col-6 border py-2">{{ facture.date }}</div>
+    </div>
+
+    <div class="array border mt-5">
+
+        <div class="row no-gutters">
+            <div class="col-3 border text-center py-2">
+                Desciption
+            </div>
+            <div class="col-3 border text-center py-2">
+                Quantité
+            </div>
+            <div class="col-3 border text-center py-2">
+                Prix unitaire HT
+            </div>
+            <div class="col-3 border text-center py-2">
+                Prix total HT
+            </div>
+        </div>
+
+        {% for ligne_facture in facture.ligne_facture.all %}
+
+        <div class="row no-gutters">
+            <div class="col-3 border text-center py-2">
+                {{ ligne_facture.product }}
+            </div>
+            <div class="col-3 border text-center py-2">
+                {{ ligne_facture.quantity }}
+            </div>
+            <div class="col-3 border text-center py-2">
+                {{ ligne_facture.unit_price }}
+            </div>
+            <div class="col-3 border text-center py-2">
+                {{ ligne_facture.total_quantity_ht }}
+            </div>
+        </div>
+
+        {% endfor %}
+        <!-- Modal -->
+    </div>
+
+    <div class="total d-flex justify-content-end mt-5">
+        <div class="total-container w-25">
+            <div class="row no-gutters">
+                <div class="col-6 border">
+                    Total HT
+                </div>
+                <div class="col-6 border">
+                    {{facture.total_ht}}
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-6 border">
+                    TVA (20,00%)
+                </div>
+                <div class="col-6 border">
+                    {{ facture.tva }}
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-6 border">
+                    Total TTC
+                </div>
+                <div class="col-6 border">
+                    {{ facture.total_ttc }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="" class="btn">Editer</a>
+
+    <div class="text-center">
+        <!-- Button trigger modal -->
+        <h5 class="modal-title" id="exampleModalLabel">Export pdf</h5>
+        <a type="button" class="btn btn-primary" href="{% url 'pdf_facture' facture.devis.id%}">pdf</a>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+            Supprimer
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Supprimer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Êtes-vous sûr de vouloir supprimer ce facture ?
+                    </div>
+                    <div class="modal-footer">
+                        <form method="post" action="">{% csrf_token %}
+                            <input type="submit" value="Confirm" class="btn btn-danger">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{%endblock%}

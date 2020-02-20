@@ -19,17 +19,17 @@
             </div>
         </div>
 
-
+        {% for facture in object_list %}
 
         <div class="row no-gutters">
             <div class="col-4 border text-center py-2">
-                <a href="">
-
+                <a href="{% url 'facture_detail' facture.devis.id %}">
+                    {{facture.client}}
                 </a>
             </div>
             <div class="col-4 border text-center py-2">
-                <a href="">
-
+                <a href="{% url 'facture_detail' facture.devis.id %}">
+                    {{facture.date}}
                 </a>
             </div>
             <div class="col-4 border text-center py-2">
@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-      
+      {% endfor %}
         <!-- Modal -->
     </div>
 </div>
