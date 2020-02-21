@@ -94,14 +94,23 @@
         </div>
     </div>
 
-   
-    {% if perms.facture.view_facture %}
-    <div class="text-center">
-        <!-- Button trigger modal -->
-        <h5 class="modal-title" id="exampleModalLabel">Export pdf</h5>
-        <a type="button" class="btn btn-primary" href="{% url 'pdf_facture' facture.devis.id%}">pdf</a>
-    </div>
+    {% with request.resolver_match.view_name as view_name %}
+
+    {% if view_name != "pdf_facture" and view_name != "pdf" %}
+    
+        {% if perms.facture.view_facture %}
+        <div class="text-center">
+            <!-- Button trigger modal -->
+            <h5 class="modal-title" id="exampleModalLabel">Export pdf</h5>
+            <a type="button" class="btn btn-primary" href="{% url 'pdf_facture' facture.devis.id%}">pdf</a>
+        </div>
+        {% endif %}
+
+    
     {% endif %}
+    {% endwith %}
+
+   
 </div>
 
 

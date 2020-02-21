@@ -2,20 +2,20 @@
 
 {%block content%}
 
-<h2 class="text-center">{{view}}Liste des devis</h2>
+<h2 class="text-center">Liste des devis</h2>
 
 
 <div class="container">
     <div class="array border">
 
         <div class="row no-gutters">
-            <div class="col-4 border text-center py-2">
+            <div class=" bg-success col-4 border text-center py-2">
                 Client
             </div>
-            <div class="col-4 border text-center py-2">
+            <div class=" bg-success col-4 border text-center py-2">
                 Date
             </div>
-            <div class="col-4 border text-center py-2">
+            <div class=" bg-success col-4 border text-center py-2">
                 X
             </div>
         </div>
@@ -41,10 +41,10 @@
                         data-target="#exampleModal">
                         Supprimer
                     </button>
-                    {% endif %}
 
+                    
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -64,6 +64,14 @@
                             </div>
                         </div>
                     </div>
+
+                    {% else %}
+                    <button type="button" class="btn btn-secondary devis-delete">
+                        Supprimer
+                    </button>
+                    
+                    {% endif %}
+
                 </div>
             </div>
         </div>

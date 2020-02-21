@@ -24,7 +24,14 @@
         })
     </script>
     <body>
-        {% include 'header.html' %}
+        {% with request.resolver_match.view_name as view_name %}
+            {% if view_name != "pdf_facture" and view_name != "pdf" %}
+
+                {% include 'header.html' %}
+
+            {% endif %}
+        {% endwith %}
+
         {%load static%}
         {%block content%}
         {%endblock%}

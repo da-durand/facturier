@@ -38,5 +38,5 @@ urlpatterns = [
     path("facture/<int:pk>/", FactureDetailView.as_view(), name = 'facture_detail'),
     path("facture/<int:pk>/pdf", FacturePdf.as_view(), name = 'pdf_facture'),
     path("facture/<int:pk>/set", FactureTransformView.as_view(), name="facture_transform"),
-    path("accounts/", include('django.contrib.auth.urls'), name="login"),
+    path("accounts/", include('django.contrib.auth.urls'), name=""),
     ]

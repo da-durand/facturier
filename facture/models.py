@@ -13,7 +13,7 @@ from django.dispatch import receiver
 class Facture(models.Model):
     devis = models.OneToOneField(Devis, primary_key=True, on_delete=models.CASCADE, related_name="devis")
     date = models.DateField(default = datetime.date.today)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="client", null=True)
+    client = models.ForeignKey(Client, on_delete= models.SET_NULL, related_name="client", null=True)
 
     def total_ht(self):
         result = 0

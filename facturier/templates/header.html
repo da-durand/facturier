@@ -1,19 +1,24 @@
 <header class="bg-primary">
     <h1 class="text-center">Facturations</h1>
-    <nav class="row justify-content-around">
-        <div>
+    <div class="text-center">
+        {% if user.is_authenticated  %}
+        <a class="text-dark" href="{% url 'logout'  %}">Logout</a>
+        {% endif %}
+    </div>
+    <nav class="row no-gutters justify-content-around">
+        <div class="border">
             <a href="{% url 'client_list' %}" class="text-dark">Liste Client</a>
         </div>
-        <div>
+        <div class="border">
             <a href="{% url 'client_create' %}" class="text-dark">Ajouter Client</a>
         </div>
-        <div>
+        <div class="border">
             <a href="{% url 'devis_list' %}" class="text-dark">Liste Devis</a>
         </div>
-        <div>
+        <div class="border">
             <a href="{% url 'devis_create' %}" class="text-dark">Créer Devis</a>
         </div>
-        <div>
+        <div class="border">
             <a href="{% url 'facture_list' %}" class="text-dark">Liste Facture</a>
         </div>
     </nav>

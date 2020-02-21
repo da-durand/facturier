@@ -28,9 +28,6 @@ class DevisPdf(WeasyTemplateResponseMixin, DevisDetailView):
     pdf_attachment = False
     pdf_filename = "devis.pdf"
 
-    def __init__(header_html=None, footer_html=None):
-        self.header_html = header_html
-        self.footer_html = footer_html
 
 
 class DevisCreateView(PermissionRequiredMixin, CreateView):
