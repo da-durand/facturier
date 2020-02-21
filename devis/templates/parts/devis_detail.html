@@ -94,16 +94,26 @@
         </div>
     </div>
 
+    {% if perms.devis.change_devis %}
     <a href="{% url 'devis_update' devis.id %}" class="btn">Editer</a>
+    {% endif %}
 
     <div class="text-center">
         <!-- Button trigger modal -->
+        {% if perms.devis.view_devis %}
         <h5 class="modal-title" id="exampleModalLabel">Export pdf</h5>
-        <a type="button" class="btn btn-primary" href="{% url 'pdf' devis.id %}" >pdf</a>
-        <a href="{% url 'facture_transform' devis.id %}">Transformer en Facture</a>
+        <a type="button" class="btn btn-primary" href="{% url 'pdf' devis.id %}">pdf</a>
+        {% endif %}
+
+        {% if perms.facture.add_facture %}
+        <a href="{% url 'facture_transform' devis.id %}" class="btn btn-success">Transformer en Facture</a>
+        {% endif %}
+        
+        {% if perms.devis.delete_devis %}
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
             Supprimer
         </button>
+        {% endif %}
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -120,14 +130,14 @@
                     </div>
                     <div class="modal-footer">
                         <form method="post" action="{% url 'devis_delete' devis.id %}">{% csrf_token %}
-            <input type="submit" value="Confirm" class="btn btn-danger">
-            </form>
-    </div>
-</div>
-</div>
-</div>
+                            <input type="submit" value="Confirm" class="btn btn-danger">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div>
+    </div>
 </div>
 
 

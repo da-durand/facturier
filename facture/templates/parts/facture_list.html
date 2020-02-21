@@ -35,10 +35,12 @@
             <div class="col-4 border text-center py-2">
                 <div class="text-center">
                     <!-- Button trigger modal -->
+                    {% if perms.facture.delete_facture %}
                     <button type="button" class="btn btn-danger devis-delete" id="" data-toggle="modal"
                         data-target="#exampleModal">
                         Supprimer
                     </button>
+                    {% endif %}
 
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">

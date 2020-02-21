@@ -45,14 +45,18 @@
             </div>
         </div>
     </div>
+    {% if perms.web.change_client %}
     <div class="text-center">
         <a href="{% url 'client_update' client.id %}" class="btn btn-primary">Editer</a>
     </div>
+    {% endif %}
     <div class="text-center">
         <!-- Button trigger modal -->
+        {% if perms.web.delete_client %}
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
             Supprimer
         </button>
+        {% endif %}
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">

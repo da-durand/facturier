@@ -4,12 +4,16 @@ from django.urls import reverse_lazy
 from .models import Client
 from .forms import AdressFormSet
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
-class ClientCreateView(CreateView):
+
+class ClientCreateView(PermissionRequiredMixin, CreateView):
     model = Client
     template_name = "registration/client_form.html"
     fields = "__all__"
+    permission_required = "web.add_client"
+
 
     def get_context_data(self, **kwargs):
         context = CreateView.get_context_data(self, **kwargs)
@@ -31,21 +35,26 @@ class ClientCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('client_list') 
 
-class ClientListView(ListView):
+class ClientListView(PermissionRequiredMixin, ListView):
     model = Client
     template_name = "parts/client_list.html"
+    permission_required = "web.view_client"
 
 
-class ClientDetailView(DetailView):
+class ClientDetailView(PermissionRequiredMixin, DetailView):
     model = Client
     template_name = "parts/client_detail.html"
     slug_field = "adress"
     slug_url_kwarg = "adress"
+    permission_required = "web.view_client"
 
-class ClientUpdateView(UpdateView):
+
+class ClientUpdateView(PermissionRequiredMixin, UpdateView):
     model = Client
     template_name = "registration/client_form.html"
     fields = "__all__"
+    permission_required = "web.change_client"
+
 
     def get_context_data(self, **kwargs):
         context = UpdateView.get_context_data(self, **kwargs)
@@ -63,6 +72,7 @@ class ClientUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('client_list') 
 
-class ClientDeleteView(DeleteView):
+class ClientDeleteView(PermissionRequiredMixin, DeleteView):
     model = Client
     success_url= reverse_lazy('client_list')
+    permission_required = "web.delete_client"

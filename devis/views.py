@@ -6,29 +6,39 @@ from facture.models import Facture
 from .forms import LigneFormSet
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from django_weasyprint import WeasyTemplateResponseMixin
 from django_weasyprint.views import CONTENT_TYPE_PNG
 
 # Create your views here.
-class DevisListView(ListView):
+class DevisListView(PermissionRequiredMixin, ListView):
     model = Devis
     template_name = "parts/devis_list.html"
+    permission_required = "devis.view_devis"
 
-class DevisDetailView(DetailView):
+class DevisDetailView(PermissionRequiredMixin, DetailView):
     model = Devis
     template_name = "parts/devis_detail.html"
+    permission_required = "devis.view_devis"
+
 
 class DevisPdf(WeasyTemplateResponseMixin, DevisDetailView):
 
     pdf_attachment = False
     pdf_filename = "devis.pdf"
 
+    def __init__(header_html=None, footer_html=None):
+        self.header_html = header_html
+        self.footer_html = footer_html
 
-class DevisCreateView(CreateView):
+
+class DevisCreateView(PermissionRequiredMixin, CreateView):
     model = Devis
     template_name = "parts/form_devis.html"
     fields = ["client"]
+    permission_required = "devis.add_devis"
+
 
     def get_context_data(self, **kwargs):
         context = CreateView.get_context_data(self, **kwargs)
@@ -46,10 +56,12 @@ class DevisCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('devis_list')
 
-class DevisUpdateView(UpdateView):
+class DevisUpdateView(PermissionRequiredMixin, UpdateView):
     model = Devis
     template_name = "parts/form_devis.html"
     fields = "__all__"
+    permission_required = "devis.change_devis"
+
 
     def get_context_data(self, **kwargs):
         context = UpdateView.get_context_data(self, **kwargs)
@@ -68,16 +80,20 @@ class DevisUpdateView(UpdateView):
         return reverse_lazy('devis_list')
 
     
-class DevisDeleteView(DeleteView):
+class DevisDeleteView(PermissionRequiredMixin, DeleteView):
     model = Devis
     success_url = reverse_lazy('devis_list')
+    permission_required = "devis.delete_devis"
 
 
-class FactureTransformView(DetailView):
+class FactureTransformView(PermissionRequiredMixin ,DetailView):
     model = Devis
     template_name = "parts/devis_detail.html"
+    permission_required = "devis.add_facture"
 
     def get(self, request, *args, **kwargs):
+
+
         fact = Facture.objects.create(
             devis = self.get_object(),
             client = self.get_object().client

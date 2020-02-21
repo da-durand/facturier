@@ -2,7 +2,8 @@
 
 {%block content%}
 
-<h2 class="text-center">Liste des devis</h2>
+<h2 class="text-center">{{view}}Liste des devis</h2>
+
 
 <div class="container">
     <div class="array border">
@@ -35,10 +36,12 @@
             <div class="col-4 border text-center py-2">
                 <div class="text-center">
                     <!-- Button trigger modal -->
+                    {% if perms.devis.delete_devis %}
                     <button type="button" class="btn btn-danger devis-delete" id="" data-toggle="modal"
                         data-target="#exampleModal">
                         Supprimer
                     </button>
+                    {% endif %}
 
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
